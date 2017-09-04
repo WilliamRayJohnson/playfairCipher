@@ -48,6 +48,13 @@ class PlayfairTest(unittest.TestCase):
         
         self.assertEqual(actualSplit, expectedSplit)
         
+    def testEncryptWithWrapping(self):
+        splitMessage = "he lx lo wo rl dx"
+        expectedEncryption = "DB QS IQ VP QM FW"
+        actualEncryption = self.cipher.encrypt(splitMessage)
+        
+        self.assertEqual(actualEncryption, expectedEncryption)
+        
     def testEncrypt(self):
         splitMessage = "en cr yp tx"
         expectedEncryption = "BK GO WR SV"

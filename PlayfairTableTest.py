@@ -34,6 +34,20 @@ class PlayfairTableTest(unittest.TestCase):
         
         self.assertEqual(actualValue, expectedValue)
         
+    def testGetValueOutOfRangeRow(self):
+        index = (5,2)
+        expectedValue = 's'
+        actualValue = self.table.getValue(index)
+        
+        self.assertEqual(actualValue, expectedValue)
+        
+    def testGetValueOutOfRangeColumn(self):
+        index = (4,5)
+        expectedValue = 'v'
+        actualValue = self.table.getValue(index)
+        
+        self.assertEqual(actualValue, expectedValue)
+        
         
 if __name__ == '__main__':
     unittest.main()

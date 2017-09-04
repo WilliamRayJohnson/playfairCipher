@@ -56,4 +56,8 @@ class PlayfairTable:
             raise ValueError('Value not found in table')
             
     def getValue(self, index):
+        if index[0] == 5:
+            index = (0, index[1])
+        if index[1] == 5:
+            index = (index[0], 0)
         return self.table[index[0]][index[1]]
