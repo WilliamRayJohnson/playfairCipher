@@ -54,6 +54,13 @@ class PlayfairTest(unittest.TestCase):
         actualEncryption = self.cipher.encrypt(splitMessage)
         
         self.assertEqual(actualEncryption, expectedEncryption)
+    
+    def testDecrypt(self):
+        encryptedMessage = "BK GO WR SV"
+        expectedDecryption = "encryptx"
+        actualDecryption = self.cipher.decrypt(encryptedMessage)
+        
+        self.assertEqual(actualDecryption, expectedDecryption)
         
     def testWikipediaExample(self):
         wikiCipher = Playfair.Playfair("playfair example")

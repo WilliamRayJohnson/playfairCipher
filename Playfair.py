@@ -52,3 +52,25 @@ class Playfair:
                                    self.table.getValue((charTwoIndex[0], charOneIndex[1])) +
                                    " ")
         return encryptedMessage.rstrip().upper()
+        
+    def decrypt(self, encryptedMessage):
+        encryptedMessageArray = encryptedMessage.lower().split(" ")
+        decryptedMessage = ""
+        
+        for pair in encryptedMessageArray:
+            charOneIndex = self.table.getIndex(pair[0])
+            charTwoIndex = self.table.getIndex(pair[1])
+            
+            if charOneIndex[0] == charTwoIndex[0]:
+                decryptedMessage = (decryptedMessage +
+                                   self.table.getValue((charOneIndex[0], charOneIndex[1] - 1)) +
+                                   self.table.getValue((charTwoIndex[0], charTwoIndex[1] - 1)))
+            elif charOneIndex[1] == charTwoIndex[1]:
+                decryptedMessage = (decryptedMessage +
+                                   self.table.getValue((charOneIndex[0] - 1, charOneIndex[1])) +
+                                   self.table.getValue((charTwoIndex[0] - 1, charTwoIndex[1]))) 
+            else:
+                decryptedMessage = (decryptedMessage +
+                                   self.table.getValue((charOneIndex[0], charTwoIndex[1])) +
+                                   self.table.getValue((charTwoIndex[0], charOneIndex[1])))
+        return decryptedMessage.rstrip()
