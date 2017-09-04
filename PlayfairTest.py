@@ -8,9 +8,10 @@ import unittest
 import Playfair
 
 class PlayfairTest(unittest.TestCase):
+    keyword = "test"
     
     def setUp(self):
-        self.cipher = Playfair.Playfair()
+        self.cipher = Playfair.Playfair(self.keyword)
     
     def testSplitMessageWithOddLengthMessage(self):
         message = "This is a test"
@@ -21,10 +22,51 @@ class PlayfairTest(unittest.TestCase):
         
     def testSplitMessageWithEvenLengthMessage(self):
         message = "Hello World"
-        expectedSplit = "he ll ow or ld"
+        expectedSplit = "he lx lo wo rl dx"
         actualSplit = self.cipher.splitMessage(message)
         
         self.assertEqual(actualSplit, expectedSplit)
+    
+    def testSplitMessageWithEmptyMessage(self):
+        message = ""
+        expectedSplit = ""
+        actualSplit = self.cipher.splitMessage(message)
+        
+        self.assertEqual(actualSplit, expectedSplit)
+        
+    def testSplitMessageWithSpaceMessage(self):
+        message = "           "
+        expectedSplit = ""
+        actualSplit = self.cipher.splitMessage(message)
+        
+        self.assertEqual(actualSplit, expectedSplit)
+        
+    def testSplitMessageWithMatchingPair(self):
+        message = "tree"
+        expectedSplit = "tr ex ex"
+        actualSplit = self.cipher.splitMessage(message)
+        
+        self.assertEqual(actualSplit, expectedSplit)
+        
+    def testEncrypt(self):
+        splitMessage = "en cr yp tx"
+        expectedEncryption = "BK GO WR SV"
+        actualEncryption = self.cipher.encrypt(splitMessage)
+        
+        self.assertEqual(actualEncryption, expectedEncryption)
+        
+    def testWikipediaExample(self):
+        wikiCipher = Playfair.Playfair("playfair example")
+        message = "Hide the gold in the tree stump"
+        expectedSplit = "hi de th eg ol di nt he tr ex es tu mp"
+        actualSplit = wikiCipher.splitMessage(message)
+        
+        self.assertEqual(actualSplit, expectedSplit)
+        
+        expectedEncryption = "BM OD ZB XD NA BE KU DM UI XM MO UV IF"
+        actualEncryption = wikiCipher.encrypt(actualSplit)
+        
+        self.assertEqual(actualEncryption, expectedEncryption)
         
         
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ class PlayfairTable:
     alphabet = "abcdefghiklmnopqrstuvwxyz"
 
     def __init__(self, keyword):
-        self.keyword = keyword
+        self.keyword = keyword.lower().replace(" ", "")
         self.createTable()
     
     '''
@@ -54,3 +54,6 @@ class PlayfairTable:
             return (row, column)
         else:
             raise ValueError('Value not found in table')
+            
+    def getValue(self, index):
+        return self.table[index[0]][index[1]]

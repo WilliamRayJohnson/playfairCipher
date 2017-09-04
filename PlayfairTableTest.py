@@ -27,6 +27,13 @@ class PlayfairTableTest(unittest.TestCase):
         
         self.assertEqual(actualIndex, expectedIndex)
     
-    
+    def testGetValue(self):
+        index = (3,2)
+        expectedValue = 'q'
+        actualValue = self.table.getValue(index)
+        
+        self.assertEqual(actualValue, expectedValue)
+        
+        
 if __name__ == '__main__':
     unittest.main()
