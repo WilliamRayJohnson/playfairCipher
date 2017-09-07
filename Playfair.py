@@ -14,13 +14,17 @@ class Playfair:
         splitMessage = ""
         
         for pair in range(len(message)//2):
-            if message[:2][0] == message[:2][1]:
+            if message[0] == message[1] and message[0] != "x":
                 message = message[:1] + "x" + message[1:]
+            elif message[0] == "x" and message[1] == "x":
+                message = message[:1] + "q" + message[1:]
             splitMessage = splitMessage + message[:2] + " "
             message = message[2:]
         
-        if len(message) == 1:
+        if len(message) == 1 and message != "x":
             splitMessage = splitMessage + message + "x"
+        elif len(message) == 1 and message == "x":
+            splitMessage = splitMessage + "xq"
         elif len(message) == 2:
             splitMessage = splitMessage + message
         elif len(message) == 0:

@@ -9,7 +9,7 @@ class PlayfairTable:
     alphabet = "abcdefghiklmnopqrstuvwxyz"
 
     def __init__(self, keyword):
-        self.keyword = keyword.lower().replace(" ", "")
+        self.keyword = keyword.lower().replace(" ", "").replace("j", "i")
         self.createTable()
     
     '''
@@ -35,6 +35,9 @@ class PlayfairTable:
         return self.table
         
     def getIndex(self, value):
+        localValue = value
+        if localValue == "j":
+            localValue = "i"
         valueFound = False
         index = None
         row = 0
@@ -42,7 +45,7 @@ class PlayfairTable:
         
         while not(valueFound) and row <= 4:
             while not(valueFound) and column <= 4:
-                if self.table[row][column] == value:
+                if self.table[row][column] == localValue:
                     valueFound = True
                 else:
                     column += 1

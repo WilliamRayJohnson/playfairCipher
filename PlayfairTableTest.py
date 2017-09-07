@@ -26,6 +26,12 @@ class PlayfairTableTest(unittest.TestCase):
         expectedIndex = (1,1)
         
         self.assertEqual(actualIndex, expectedIndex)
+        
+    def testGetIndexOfJ(self):
+        actualIndex = self.table.getIndex('j')
+        expectedIndex = (2,0)
+        
+        self.assertEqual(actualIndex, expectedIndex)
     
     def testGetValue(self):
         index = (3,2)
@@ -47,6 +53,16 @@ class PlayfairTableTest(unittest.TestCase):
         actualValue = self.table.getValue(index)
         
         self.assertEqual(actualValue, expectedValue)
+    
+    def testCreateTableKeywordWithJ(self):
+        expectedTable = [['i','a','c','k','b'], 
+                         ['d','e','f','g','h'], 
+                         ['l','m','n','o','p'], 
+                         ['q','r','s','t','u'],
+                         ['v','w','x','y','z']]
+        actualTable = PlayfairTable.PlayfairTable("jack").getTable()
+        
+        self.assertEqual(actualTable, expectedTable)
         
         
 if __name__ == '__main__':
